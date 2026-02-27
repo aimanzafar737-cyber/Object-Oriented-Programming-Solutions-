@@ -1,0 +1,100 @@
+#include <iostream>
+using namespace std;
+
+class GrandLibrarySystem {
+protected:
+    string bookTitle;
+    string author;
+    int idNumber;
+
+public:
+    GrandLibrarySystem(string title, string auth, int id) {
+        bookTitle = title;
+        author = auth;
+        idNumber = id;
+    }
+
+    void displayBasicInfo() {
+        cout << "Title: " << bookTitle << endl;
+        cout << "Author: " << author << endl;
+        cout << "ID Number: " << idNumber << endl;
+    }
+};
+
+class Book : public GrandLibrarySystem {
+private:
+    int numberOfPages;
+    string genre;
+
+public:
+    Book(string title, string auth, int id, int pages, string gen)
+        : GrandLibrarySystem(title, auth, id) {
+        numberOfPages = pages;
+        genre = gen;
+    }
+
+    void displayBook() {
+        displayBasicInfo();
+        cout << "Number of Pages: " << numberOfPages << endl;
+        cout << "Genre: " << genre << endl;
+    }
+};
+
+class Magazine : public GrandLibrarySystem {
+private:
+    int issueNumber;
+    string monthOfPublication;
+
+public:
+    Magazine(string title, string auth, int id, int issue, string month)
+        : GrandLibrarySystem(title, auth, id) {
+        issueNumber = issue;
+        monthOfPublication = month;
+    }
+
+    void displayMagazine() {
+        displayBasicInfo();
+        cout << "Issue Number: " << issueNumber << endl;
+        cout << "Month of Publication: " << monthOfPublication << endl;
+    }
+};
+
+class Audiobook : public GrandLibrarySystem {
+private:
+    double duration;
+    string narratorName;
+
+public:
+    Audiobook(string title, string auth, int id, double dur, string narrator)
+        : GrandLibrarySystem(title, auth, id) {
+        duration = dur;
+        narratorName = narrator;
+    }
+
+    void displayAudiobook() {
+        displayBasicInfo();
+        cout << "Duration (hours): " << duration << endl;
+        cout << "Narrator Name: " << narratorName << endl;
+    }
+};
+
+int main() {
+
+    Book book1("The Alchemist", "Paulo Coelho", 101, 208, "Fiction");
+    Magazine mag1("National Geographic", "Various Authors", 202, 45, "January");
+    Audiobook audio1("Atomic Habits", "James Clear", 303, 5.5, "James Clear");
+
+    book1.displayBook();
+    mag1.displayMagazine();
+    audio1.displayAudiobook();
+    
+     Book book2("how to kill your family", "bella ", 190, 218, "Fiction");
+    Magazine mag1("National Geographic", "Various Authors", 202, 45, "January");
+    Audiobook audio1("Atomic Habits", "James Clear", 303, 5.5, "James Clear");
+
+    book1.displayBook();
+    mag1.displayMagazine();
+    audio1.displayAudiobook();
+
+    return 0;
+}
