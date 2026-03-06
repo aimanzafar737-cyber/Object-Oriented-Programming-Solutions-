@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+class delivery{
+    protected:
+
+    int id;
+    double price;
+    string name;
+
+
+    public:
+    delivery(int id,double price,string name)
+    {
+        this->id=id;
+        this->name=name;
+        this->price=price;
+
+    };
+    void displayinfo(int id,double price,string name){
+        cout<<"SIMPLE DELIVERY"<<endl;
+        cout<<"ID :"<<id<<endl;
+        cout<<"COSTUMER NAME :"<<name<<endl;
+        cout<<"PRICE  :"<<price<<endl;
+
+    };
+
+
+};
+
+class expressdelivery: public delivery{
+    protected:
+    double time;
+
+    public:
+    expressdelivery(int id,double price,string name,double time) : delivery(id,price,name){
+        this->time=time;
+    }
+
+
+    delivery::displayinfo;
+
+    void displayinfo(int id,double price,string name,double time){
+        cout<<"FAST DELIVERY"<<endl;
+        cout<<"TIME :"<<time<<endl;
+        cout<<"ID :"<<id<<endl;
+        cout<<"COSTUMER NAME :"<<name<<endl;
+        cout<<"PRICE  :"<<price<<endl;
+        
+
+    }
+
+};
+
+int main(){
+    delivery first(1,20,"jack");
+
+    expressdelivery second(2,30,"zack",40);
+
+    first.displayinfo(1,20,"jack");
+
+    second.displayinfo(2,30,"zack",40);
+}
