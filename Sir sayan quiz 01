@@ -37,6 +37,7 @@ public:
         displayBasicInfo();
         cout << "Number of Pages: " << numberOfPages << endl;
         cout << "Genre: " << genre << endl;
+        cout << "------------------------" << endl;
     }
 };
 
@@ -56,6 +57,7 @@ public:
         displayBasicInfo();
         cout << "Issue Number: " << issueNumber << endl;
         cout << "Month of Publication: " << monthOfPublication << endl;
+        cout << "------------------------" << endl;
     }
 };
 
@@ -75,6 +77,7 @@ public:
         displayBasicInfo();
         cout << "Duration (hours): " << duration << endl;
         cout << "Narrator Name: " << narratorName << endl;
+        cout << "------------------------" << endl;
     }
 };
 
@@ -87,14 +90,14 @@ int main() {
     book1.displayBook();
     mag1.displayMagazine();
     audio1.displayAudiobook();
-    
-     Book book2("how to kill your family", "bella ", 190, 218, "Fiction");
-    Magazine mag1("National Geographic", "Various Authors", 202, 45, "January");
-    Audiobook audio1("Atomic Habits", "James Clear", 303, 5.5, "James Clear");
 
-    book1.displayBook();
-    mag1.displayMagazine();
-    audio1.displayAudiobook();
+    Book book2("How to Kill Your Family", "Bella", 190, 218, "Fiction");
+    Magazine mag2("Time Magazine", "Various Authors", 204, 50, "March");
+    Audiobook audio2("Deep Work", "Cal Newport", 305, 6.0, "Cal Newport");
+
+    book2.displayBook();
+    mag2.displayMagazine();
+    audio2.displayAudiobook();
 
     return 0;
 }
