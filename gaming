@@ -1,0 +1,224 @@
+#include <iostream>
+using namespace std;
+
+class Hero
+{
+protected:
+    string heroName;
+    string heroType;
+    int    healthPoints;
+    int    powerLevel;
+    double experiencePoints;
+
+public:
+    void setInfo(string name, string type, int hp, int power, double exp)
+    {
+        heroName         = name;
+        heroType         = type;
+        healthPoints     = hp;
+        powerLevel       = power;
+        experiencePoints = exp;
+    }
+
+    void showGameMessage()
+    {
+        cout << "  WELCOME TO THE FANTASY BATTLE ARENA" << endl;
+        cout << "  Game Rules:" << endl;
+        cout << "  - Each hero attacks in their own way" << endl;
+        cout << "  - Each hero defends in their own way" << endl;
+        cout << "  - May the best hero win!" << endl;
+    }
+    void showBasicInfo()
+    {
+        cout << "  Name           : " << heroName         << endl;
+        cout << "  Type           : " << heroType         << endl;
+        cout << "  Health Points  : " << healthPoints     << endl;
+        cout << "  Power Level    : " << powerLevel       << endl;
+        cout << "  Experience     : " << experiencePoints << endl;
+    }
+    virtual double attack() = 0;
+    virtual double defend() = 0;
+
+    string getName()
+    {
+        return heroName;
+    }
+};
+class Warrior : public Hero
+{
+private:
+    string weaponName;
+    int    armorStrength;
+    int    rageLevel;
+
+public:
+    void setWarriorInfo(string name, int hp, int power, double exp,string weapon, int armor, int rage)
+    {
+        setInfo(name, "Warrior", hp, power, exp);
+        weaponName    = weapon;
+        armorStrength = armor;
+        rageLevel     = rage;
+    }
+    double attack()
+    {
+        double damage = powerLevel * rageLevel * 1.5;
+        return damage;
+    }
+    double defend()
+    {
+        double block = armorStrength * 2.0 + powerLevel * 0.8;
+        return block;
+    }
+    void showProfile()
+    {
+        cout << "  [WARRIOR]" << endl;
+        showBasicInfo();
+        cout << "  Weapon         : " << weaponName    << endl;
+        cout << "  Armor Strength : " << armorStrength << endl;
+        cout << "  Rage Level     : " << rageLevel     << endl;
+        cout << "  Attack Value   : " << attack()      << endl;
+        cout << "  Defense Value  : " << defend()      << endl;
+    }
+};
+class Mage : public Hero
+{
+private:
+    string spellName;
+    int    manaPoints;
+    double magicMultiplier;
+
+public:
+    void setMageInfo(string name, int hp, int power, double exp,string spell, int mana, double multiplier)
+    {
+        setInfo(name, "Mage", hp, power, exp);
+
+        spellName       = spell;
+        manaPoints      = mana;
+        magicMultiplier = multiplier;
+    }
+    double attack()
+    {
+        double damage = manaPoints * magicMultiplier + powerLevel * 2.0;
+        return damage;
+    }
+    double defend()
+    {
+        double block = manaPoints * 0.5 + experiencePoints * 0.2;
+        return block;
+    }
+    void showProfile()
+    {
+        cout << "----------------------------------" << endl;
+        cout << "  [MAGE]" << endl;
+        showBasicInfo();
+        cout << "  Spell Name     : " << spellName       << endl;
+        cout << "  Mana Points    : " << manaPoints      << endl;
+        cout << "  Magic Multiply : " << magicMultiplier << endl;
+        cout << "  Attack Value   : " << attack()        << endl;
+        cout << "  Defense Value  : " << defend()        << endl;
+        cout << "----------------------------------" << endl;
+    }
+};
+class Archer : public Hero
+{
+private:
+    string bowType;
+    int    numberOfArrows;
+    double accuracyRate;
+
+public:
+    void setArcherInfo(string name, int hp, int power, double exp,string bow, int arrows, double accuracy)
+    {
+        setInfo(name, "Archer", hp, power, exp);
+        bowType        = bow;
+        numberOfArrows = arrows;
+        accuracyRate   = accuracy;
+    }
+
+    double attack()
+    {
+        double damage = numberOfArrows * accuracyRate * powerLevel * 1.2;
+        return damage;
+    }
+    double defend()
+    {
+        double block = accuracyRate * 100 + experiencePoints * 0.25;
+        return block;
+    }
+    void showProfile()
+    {
+        cout << "  [ARCHER]" << endl;
+        showBasicInfo();
+        cout << "  Bow Type       : " << bowType        << endl;
+        cout << "  Arrows         : " << numberOfArrows << endl;
+        cout << "  Accuracy       : " << accuracyRate   << endl;
+        cout << "  Attack Value   : " << attack()       << endl;
+        cout << "  Defense Value  : " << defend()       << endl;
+    }
+};
+int main()
+{
+
+    Warrior warrior;
+    warrior.setWarriorInfo("Thor", 180, 20, 350.0, "Battleaxe", 30, 8);
+
+    Mage mage;
+    mage.setMageInfo("lunara", 110, 18, 420.0, "Inferno Blast", 200, 2.5);
+
+    Archer archer;
+    archer.setArcherInfo("robert", 130, 16, 390.0, "Longbow", 25, 0.85);
+
+    warrior.showGameMessage();
+
+    cout << "========== HERO PROFILES ==========" << endl;
+    warrior.showProfile();
+    mage.showProfile();
+    archer.showProfile();
+    
+    cout << endl;
+    cout << "========== BATTLE ACTIONS ==========" << endl;
+
+    cout << endl;
+    cout << warrior.getName() << " swings his Battleaxe!" << endl;
+    cout << "  Attack Damage : " << warrior.attack() << endl;
+    cout << warrior.getName() << " raises his armor shield!" << endl;
+    cout << "  Defense Value : " << warrior.defend() << endl;
+
+    cout << endl;
+    cout << mage.getName() << " casts Inferno Blast!" << endl;
+    cout << "  Attack Damage : " << mage.attack() << endl;
+    cout << mage.getName() << " summons a magic shield!" << endl;
+    cout << "  Defense Value : " << mage.defend() << endl;
+
+    cout << endl;
+    cout << archer.getName() << " fires arrows precisely!" << endl;
+    cout << "  Attack Damage : " << archer.attack() << endl;
+    cout << archer.getName() << " dodges with agility!" << endl;
+    cout << "  Defense Value : " << archer.defend() << endl;
+
+    cout << endl;
+    cout << "========== FINAL SUMMARY ==========" << endl;
+    cout << "Warrior  attack: " << warrior.attack() << endl;
+    cout << "Mage     attack: " << mage.attack()    << endl;
+    cout << "Archer   attack: " << archer.attack()  << endl;
+
+    string winner  = warrior.getName();
+    double highest = warrior.attack();
+
+    if (mage.attack() > highest)
+    {
+        highest = mage.attack();
+        winner  = mage.getName();
+    }
+
+    if (archer.attack() > highest)
+    {
+        winner = archer.getName();
+    }
+
+    cout << endl;
+    cout << "*** Highest Attacker: " << winner << " ***" << endl;
+    cout << "====================================" << endl;
+
+    return 0;
+}
